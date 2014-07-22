@@ -1,5 +1,7 @@
 <%# add navigation links to this file %>
 
 <% if user_signed_in? %>
-  <li><%= link_to 'Feedbacks', feedbacks_path %></li>
+  <li class="<%= 'active' if params[:controller] == 'feedbacks' %>">
+    <a href="/feedbacks">Feedbacks</a>
+  </li>
 <% end %>
