@@ -1,0 +1,77 @@
+<%- model_class = AnnualSummaryReport -%>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-3 pull-right" style="margin-top: 2px;">
+
+          <div class="form-group">
+            <%= link_to t('.back', :default => t("helpers.links.back")),
+                        annual_summary_reports_path, :class => 'btn btn-default' %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_annual_summary_report_path(@annual_summary_report), :class => 'btn btn-default' %>
+            <%= link_to 'Delete this report',
+                        annual_summary_report_path(@annual_summary_report),
+                        :method => 'delete',
+                        :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+                        :class => 'btn btn-danger' %>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+              <h3><%= @annual_summary_report.title %> (<%= @annual_summary_report.year %>)</h3>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div ng-app="cdpApp" ng-controller="TabsCtrl as tab" class="tabbable tabs-left">
+
+            <div class="row">
+              <div class="col-xs-2">
+                <ul class="nav nav-pills nav-stacked red">
+                  <li ng-class="getTabClass(1)" ng-click="setActiveTab(1)">
+                    <a href="#expectations" data-toggle="tab">Expectations</a></li>
+                  <li ng-class="getTabClass(2)" ng-click="setActiveTab(2)">
+                    <a href="#aspiratons" data-toggle="tab">Aspirations</a></li>
+                  <li ng-class="getTabClass(3)" ng-click="setActiveTab(3)">
+                    <a href="#gaps" data-toggle="tab">Gaps/Areas of Focus</a></li>
+                  <li ng-class="getTabClass(4)" ng-click="setActiveTab(4)">
+                    <a href="#goals" data-toggle="tab">Goal Reflection</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-10">
+                <div class="tab-content">
+                  <div ng-class="getTabPaneClass(1)" id="expectations">
+                    <div class="list-group-item" ng-repeat="question in questions[0]">
+                      <div class="question">{{question.question}}   </div>
+                      <div><textarea class="answerTextArea"></textarea></div>
+                    </div>
+                  </div>
+
+                  <div ng-class="getTabPaneClass(2)" id="aspiratons">
+                    {{tab2}}
+                  </div>
+
+                  <div ng-class="getTabPaneClass(3)" id="gaps">
+                    {{tab3}}
+                  </div>
+
+                  <div ng-class="getTabPaneClass(4)" id="goals">
+                    {{tab4}}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>

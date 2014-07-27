@@ -1,0 +1,56 @@
+<%- model_class = Question -%>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12" style="margin-top: 30px;">
+
+      <%= link_to 'Create a new question',
+                  new_question_path,
+                  :class => 'btn btn-primary' %>
+
+      <div class="panel panel-primary" style="margin-top: 20px;">
+        <div class="panel-heading">Questions</div>
+        <div class="panel-body">
+
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th><%= model_class.human_attribute_name(:id) %></th>
+              <th><%= model_class.human_attribute_name(:question) %></th>
+              <th><%= model_class.human_attribute_name(:section_id) %></th>
+              <th><%= model_class.human_attribute_name(:active) %></th>
+              <th><%= model_class.human_attribute_name(:created_at) %></th>
+              <th><%= t '.actions', :default => t("helpers.actions") %></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @questions.each do |question| %>
+                <tr>
+                  <td><%= question.id %></td>
+                  <td><%= question.question %></td>
+                  <td><%= question.section_id %></td>
+                  <td><%= question.active %></td>
+                  <td><%= l question.created_at, format: :long %></td>
+                  <td>
+                    <%= link_to question_path(question), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+                        <%= glyph 'info-sign' %>
+                    <%- end -%>
+                    <%= link_to edit_question_path(question), :class => 'btn btn-xs', :title => "#{ t('.edit', :default => t('helpers.links.edit')) }" do %>
+                        <%= glyph 'pencil' %>
+                    <%- end -%>
+                    <%= link_to question_path(question), :method => :delete, :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+                        <%= glyph 'remove' %>
+                    <%- end -%>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>

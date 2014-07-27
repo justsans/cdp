@@ -1,7 +1,11 @@
 <%# add navigation links to this file %>
 
 <% if user_signed_in? %>
+  <li class="<%= 'active' if params[:controller] == 'annual_summary_reports' %>">
+      <a href="/annual_summary_reports">Reports</a>
+  </li>
   <li class="<%= 'active' if params[:controller] == 'feedbacks' %>">
     <a href="/feedbacks">Feedbacks</a>
   </li>
+
 <% end %>
