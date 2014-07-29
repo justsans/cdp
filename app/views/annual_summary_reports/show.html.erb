@@ -46,10 +46,13 @@
               </div>
               <div class="col-xs-10">
                 <div class="tab-content">
-                  <button type="button"  ng-click="processForm(<%=@annual_summary_report.id%>)">Save</button>
+                  <div >
+                  <button type="button" class="greenbutton btn btn-default"  style="margin-bottom: 5px;"
+                          ng-click="processForm(<%=@annual_summary_report.id%>)">Save</button>
+                    </div>
                   <% [1,2,3,4].each do |i| %>
 
-                  <div ng-class="getTabPaneClass(<%=i%>)" id="expectations">
+                  <div ng-class="getTabPaneClass(<%=i%>)" id="expectations" >
                     <div class="list-group-item" ng-repeat="answer in formData[<%=i%>]">
                       <div class="question">{{answer.question}}   </div>
                       <div><textarea class="answerTextArea" ng-model="answer.answer"></textarea></div>
@@ -58,7 +61,9 @@
                   <%end%>
 
 
-                  <button type="button"  ng-click="processForm(<%=@annual_summary_report.id%>)">Save</button>
+                  <button type="button"  class="greenbutton btn btn-default" style="margin-top: 5px;"
+                          ng-click="processForm(<%=@annual_summary_report.id%>)">Save</button>
+
 
                  <!--<pre>{{formData}}</pre>-->
                 </div>

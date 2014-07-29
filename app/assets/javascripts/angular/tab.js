@@ -9,7 +9,11 @@ myApp.controller('TabsCtrl', function($scope, $http, $resource){
     }
 
     $scope.init = function(report_id) {
-        $scope.setActiveTab(1, report_id);
+        $scope.loadTabData(1, report_id);
+        $scope.loadTabData(2, report_id);
+        $scope.loadTabData(3, report_id);
+        $scope.loadTabData(4, report_id);
+        $scope.setActiveTab(1);
     }
 
     $scope.formData = {}
@@ -22,13 +26,17 @@ myApp.controller('TabsCtrl', function($scope, $http, $resource){
         return "tab-pane " + tabClasses[tabNum];
     }
 
-    $scope.setActiveTab = function (tabNum, report_id) {
+    $scope.setActiveTab = function (tabNum) {
         initTabs();
         tabClasses[tabNum] = "active";
+
+    };
+
+    $scope.loadTabData = function(tabNum, report_id) {
         $resource('/annual_summary_reports/'+ report_id +'/answers.json?section_id='+tabNum, {}, {}).query(function(data) {
             $scope.formData[tabNum] = data;
         });
-    };
+    }
 
     $scope.processForm = function(id) {
         $http.post('/annual_summary_reports/'+id+'/answer', $scope.formData)
