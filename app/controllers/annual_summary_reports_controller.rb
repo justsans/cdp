@@ -81,33 +81,32 @@ class AnnualSummaryReportsController < ApplicationController
     #questions = params[:question]
     #answers = params[:answer]
 
-    answers = ActiveSupport::JSON.decode(request.body.read)
-    puts answers
+    sections = ActiveSupport::JSON.decode(request.body.read)
 
-    puts "#####question[1]"
-    puts answers["1"][0]["answer"]
-    puts '#######'
+    sections.each do |section, answers|
+      answers.each_with_index do |answer,index|
+        questionArray = Question.where(question: answer["question"])
+        answerArray = Answer.where(question: answer["question"]).where(annual_summary_report_id: @annual_summary_report.id)
 
-    answers["1"].each_with_index do |answer,index|
-      questionArray = Question.where(question: answer["question"])
-      answerArray = Answer.where(question: answer["question"]).where(annual_summary_report_id: @annual_summary_report.id)
+        if answerArray.nil? || answerArray.empty?
+          updatedAnswer = Answer.new
+        else
+          updatedAnswer = answerArray[0]
+        end
 
-      if answerArray.nil? || answerArray.empty?
-        updatedAnswer = Answer.new
-      else
-        updatedAnswer = answerArray[0]
+        if !questionArray.nil? && !questionArray.empty?
+          updatedAnswer.question_id = questionArray[0].id
+        end
+        updatedAnswer.section_id = section
+        updatedAnswer.question =  answer["question"]
+        updatedAnswer.answer = answer["answer"]
+        updatedAnswer.annual_summary_report_id  = @annual_summary_report.id
+        updatedAnswer.save
+
       end
-
-      if !questionArray.nil? && !questionArray.empty?
-        updatedAnswer.question_id = questionArray[0].id
-      end
-
-      updatedAnswer.question =  answer["question"]
-      updatedAnswer.answer = answer["answer"]
-      updatedAnswer.annual_summary_report_id  = @annual_summary_report.id
-      updatedAnswer.save
-
     end
+
+
 
     respond_to do |format|
       format.html { redirect_to @annual_summary_report, notice: 'Form Saved.' }

@@ -1,6 +1,6 @@
 var myApp = angular.module('cdpApp',['ngResource']);
 
-myApp.controller('TabsCtrl', function($scope, $resource){
+myApp.controller('TabsCtrl', function($scope, $http, $resource){
     var tabClasses;
 
     function initTabs() {
@@ -26,7 +26,12 @@ myApp.controller('TabsCtrl', function($scope, $resource){
         });
     };
 
-
+    $scope.processForm = function(id) {
+        $http.post('/annual_summary_reports/'+id+'/answer', $scope.formData)
+            .success(function(data) {
+//               jQuery('#message').html('Successfully saved.')
+            });
+    };
     //Initialize
     initTabs();
     $scope.setActiveTab(1);
