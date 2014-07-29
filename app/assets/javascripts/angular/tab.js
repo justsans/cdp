@@ -12,7 +12,15 @@ myApp.controller('TabsCtrl', function($scope, $http, $resource){
         $scope.loadTabData(1, report_id);
         $scope.loadTabData(2, report_id);
         $scope.loadTabData(3, report_id);
-        $scope.loadTabData(4, report_id);
+        $scope.loadTabData(5, report_id);
+        $scope.loadTabData(6, report_id);
+        $scope.loadTabData(7, report_id);
+        $scope.loadTabData(8, report_id);
+        $scope.loadTabData(9, report_id);
+        $scope.loadTabData(10, report_id);
+        $scope.loadTabData(11, report_id);
+        $scope.loadTabData(12, report_id);
+        $scope.loadTabData(13, report_id);
         $scope.setActiveTab(1);
     }
 

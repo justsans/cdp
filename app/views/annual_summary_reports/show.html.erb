@@ -42,6 +42,28 @@
                     <a href="#gaps" data-toggle="tab">Gaps/Areas of Focus</a></li>
                   <li ng-class="getTabClass(4)" ng-click="setActiveTab(4,<%=@annual_summary_report.id%>)">
                     <a href="#goals" data-toggle="tab">Goal Reflection</a></li>
+
+
+                  <li ng-class="getTabClass(5)" ng-click="setActiveTab(5,<%=@annual_summary_report.id%>)">
+                    <a href="#ecosystem" data-toggle="tab">Team Ecosystem</a></li>
+                  <li ng-class="getTabClass(6)" ng-click="setActiveTab(6,<%=@annual_summary_report.id%>)">
+                    <a href="#personal-growth" data-toggle="tab">Personal Growth</a></li>
+                  <li ng-class="getTabClass(7)" ng-click="setActiveTab(7,<%=@annual_summary_report.id%>)">
+                    <a href="#feedback" data-toggle="tab">Feedback</a></li>
+                  <li ng-class="getTabClass(8)" ng-click="setActiveTab(8,<%=@annual_summary_report.id%>)">
+                    <a href="#coachingskills" data-toggle="tab">Coaching Skills</a></li>
+                  <li ng-class="getTabClass(9)" ng-click="setActiveTab(9,<%=@annual_summary_report.id%>)">
+                    <a href="#consultingskills" data-toggle="tab">Consulting Skills</a></li>
+                  <li ng-class="getTabClass(10)" ng-click="setActiveTab(10,<%=@annual_summary_report.id%>)">
+                    <a href="#engagement" data-toggle="tab">Engagement</a></li>
+                  <li ng-class="getTabClass(11)" ng-click="setActiveTab(11,<%=@annual_summary_report.id%>)">
+                    <a href="#personaljourney" data-toggle="tab">Personal Journey</a></li>
+                  <li ng-class="getTabClass(12)" ng-click="setActiveTab(12,<%=@annual_summary_report.id%>)">
+                    <a href="#lookingforward" data-toggle="tab">Looking Forward</a></li>
+                  <li ng-class="getTabClass(13)" ng-click="setActiveTab(13,<%=@annual_summary_report.id%>)">
+                    <a href="#lookingforward" data-toggle="tab">Discussion Topics</a></li>
+
+
                 </ul>
               </div>
               <div class="col-xs-10">
@@ -50,7 +72,7 @@
                   <button type="button" class="greenbutton btn btn-default"  style="margin-bottom: 5px;"
                           ng-click="processForm(<%=@annual_summary_report.id%>)">Save</button>
                     </div>
-                  <% [1,2,3,4].each do |i| %>
+                  <% [1,2,3,4,5,6,7,8,9,10,11,12,13].each do |i| %>
 
                   <div ng-class="getTabPaneClass(<%=i%>)" id="expectations" >
                     <div class="list-group-item" ng-repeat="answer in formData[<%=i%>]">
