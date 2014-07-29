@@ -8,6 +8,10 @@ myApp.controller('TabsCtrl', function($scope, $http, $resource){
 
     }
 
+    $scope.init = function(report_id) {
+        $scope.setActiveTab(1, report_id);
+    }
+
     $scope.formData = {}
 
     $scope.getTabClass = function (tabNum) {
@@ -18,10 +22,10 @@ myApp.controller('TabsCtrl', function($scope, $http, $resource){
         return "tab-pane " + tabClasses[tabNum];
     }
 
-    $scope.setActiveTab = function (tabNum) {
+    $scope.setActiveTab = function (tabNum, report_id) {
         initTabs();
         tabClasses[tabNum] = "active";
-        $resource('/annual_summary_reports/'+ 13 +'/answers.json?section_id='+tabNum, {}, {}).query(function(data) {
+        $resource('/annual_summary_reports/'+ report_id +'/answers.json?section_id='+tabNum, {}, {}).query(function(data) {
             $scope.formData[tabNum] = data;
         });
     };
