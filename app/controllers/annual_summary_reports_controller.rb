@@ -1,5 +1,5 @@
 class AnnualSummaryReportsController < ApplicationController
-  before_action :set_annual_summary_report, only: [:show, :edit, :update, :destroy]
+  before_action :set_annual_summary_report, only: [:show, :edit, :update, :destroy, :answer]
 
   # GET /annual_summary_reports
   # GET /annual_summary_reports.json
@@ -26,8 +26,22 @@ class AnnualSummaryReportsController < ApplicationController
   def create
     @annual_summary_report = AnnualSummaryReport.new(annual_summary_report_params)
 
+    #create default questions
+    questions = Question.all
+
+
     respond_to do |format|
       if @annual_summary_report.save
+        for question in questions
+          answer = Answer.new
+          answer.question = question.question
+          answer.question_id = question.id
+          answer.answer = '';
+          answer.section_id = question.section_id
+          answer.annual_summary_report_id  = @annual_summary_report.id
+          answer.save
+        end
+
         format.html { redirect_to @annual_summary_report, notice: 'Annual summary report was successfully created.' }
         format.json { render :show, status: :created, location: @annual_summary_report }
       else
@@ -58,6 +72,46 @@ class AnnualSummaryReportsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to annual_summary_reports_url, notice: 'Annual summary report was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # POST /annual_summary_report/1/answer
+  def answer
+    #section = params[:section]
+    #questions = params[:question]
+    #answers = params[:answer]
+
+    answers = ActiveSupport::JSON.decode(request.body.read)
+    puts answers
+
+    puts "#####question[1]"
+    puts answers["1"][0]["answer"]
+    puts '#######'
+
+    answers["1"].each_with_index do |answer,index|
+      questionArray = Question.where(question: answer["question"])
+      answerArray = Answer.where(question: answer["question"]).where(annual_summary_report_id: @annual_summary_report.id)
+
+      if answerArray.nil? || answerArray.empty?
+        updatedAnswer = Answer.new
+      else
+        updatedAnswer = answerArray[0]
+      end
+
+      if !questionArray.nil? && !questionArray.empty?
+        updatedAnswer.question_id = questionArray[0].id
+      end
+
+      updatedAnswer.question =  answer["question"]
+      updatedAnswer.answer = answer["answer"]
+      updatedAnswer.annual_summary_report_id  = @annual_summary_report.id
+      updatedAnswer.save
+
+    end
+
+    respond_to do |format|
+      format.html { redirect_to @annual_summary_report, notice: 'Form Saved.' }
+      format.json { render :show, status: :ok, location: @annual_summary_report }
     end
   end
 

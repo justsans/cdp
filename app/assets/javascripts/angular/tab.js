@@ -8,7 +8,7 @@ myApp.controller('TabsCtrl', function($scope, $resource){
 
     }
 
-    $scope.questions = [];
+    $scope.formData = {}
 
     $scope.getTabClass = function (tabNum) {
         return tabClasses[tabNum];
@@ -21,13 +21,10 @@ myApp.controller('TabsCtrl', function($scope, $resource){
     $scope.setActiveTab = function (tabNum) {
         initTabs();
         tabClasses[tabNum] = "active";
+        $resource('/annual_summary_reports/'+ 13 +'/answers.json?section_id='+tabNum, {}, {}).query(function(data) {
+            $scope.formData[tabNum] = data;
+        });
     };
-
-    $resource('/questions.json', {}, {}).query(function(data) {
-        $scope.questions[0] = data;
-//        alert(data[0].id);
-    });
-
 
 
     //Initialize

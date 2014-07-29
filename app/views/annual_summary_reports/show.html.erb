@@ -27,7 +27,9 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <div ng-app="cdpApp" ng-controller="TabsCtrl as tab" class="tabbable tabs-left">
+          <div ng-app="cdpApp" ng-controller="TabsCtrl as tab"
+               ng-init="init(<%= @annual_summary_report.id %>)"
+               class="tabbable tabs-left">
 
             <div class="row">
               <div class="col-xs-2">
@@ -44,25 +46,36 @@
               </div>
               <div class="col-xs-10">
                 <div class="tab-content">
-                  <div ng-class="getTabPaneClass(1)" id="expectations">
-                    <div class="list-group-item" ng-repeat="question in questions[0]">
-                      <div class="question">{{question.question}}   </div>
-                      <div><textarea class="answerTextArea"></textarea></div>
+
+                    <!--<input type="submit" value="Save"/>-->
+                    <!--<button type="submit"  ng-click="goToNextTab()">Continue</button>-->
+                  <!--<% [1,2,3,4].each do |i| %>
+                      <form ng-submit="processForm(<%=@annual_summary_report.id%>)">
+                    <div ng-class="getTabPaneClass(<%=i%>)" id="expectations">
+
+                        <div class="list-group-item" ng-repeat="question in formData[<%=i%>]">
+                          <div class="question">{{question.question}}</div>
+                          <div><textarea class="answerTextArea" name="answer[]" ng-model="question.answer">{{question.answer}}</textarea></div>
+                        </div>
+
+
+                    </div>
+                      </form>
+                  <%end%>    -->
+                  <% [1,2,3,4].each do |i| %>
+
+                  <div ng-class="getTabPaneClass(<%=i%>)" id="expectations">
+                    <div class="list-group-item" ng-repeat="answer in formData[<%=i%>]">
+                      <div class="question">{{answer.question}}   </div>
+                      <div><textarea class="answerTextArea" ng-model="answer.answer"></textarea></div>
                     </div>
                   </div>
+                  <%end%>
 
-                  <div ng-class="getTabPaneClass(2)" id="aspiratons">
-                    {{tab2}}
-                  </div>
 
-                  <div ng-class="getTabPaneClass(3)" id="gaps">
-                    {{tab3}}
-                  </div>
+                  <button type="button"  ng-click="goToNextTab()">Save</button>
 
-                  <div ng-class="getTabPaneClass(4)" id="goals">
-                    {{tab4}}
-                  </div>
-
+                 <!--<pre>{{formData}}</pre>-->
                 </div>
               </div>
             </div>
@@ -75,3 +88,5 @@
   </div>
 </div>
 </div>
+
+
