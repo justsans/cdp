@@ -1,4 +1,6 @@
 class AnnualSummaryReportsController < ApplicationController
+
+  before_filter :require_login
   before_action :set_annual_summary_report, only: [:show, :edit, :update, :destroy, :answer]
 
   # GET /annual_summary_reports
@@ -125,5 +127,12 @@ class AnnualSummaryReportsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def annual_summary_report_params
       params.require(:annual_summary_report).permit(:user_id, :title, :year, :status)
+    end
+
+
+    def require_login
+      unless current_user
+        redirect_to new_user_registration_path
+      end
     end
 end

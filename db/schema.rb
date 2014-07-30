@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20140727211306) do
   create_table "answers", force: true do |t|
     t.integer  "annual_summary_report_id"
     t.integer  "question_id"
-    t.string   "answer"
-    t.string   "question"
+    t.text     "answer"
+    t.text     "question"
     t.integer  "section_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140727211306) do
   end
 
   create_table "questions", force: true do |t|
-    t.string   "question"
+    t.text     "question"
     t.integer  "section_id"
     t.boolean  "active"
     t.datetime "created_at"

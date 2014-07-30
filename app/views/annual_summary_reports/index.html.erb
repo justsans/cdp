@@ -5,14 +5,14 @@
 
       <% if @annual_summary_reports.size == 0 %>
 
-          <div class="jumbotron orangeBackground">
-            <h2>Welcome, <%= current_user.name %>!</h2>
+          <div class="jumbotron gray-gradient">
+            <h2>Welcome</h2>
 
             <p>Looks like you do not have any annual summary reports yet. Get started with your annual summary report
               today. Updating your annual summary on a continuous basis helps you organize your feedback and improve
               yourselves continuously throughout the year.</p>
 
-            <p><%= link_to '  Create your first report',
+            <p><%= link_to '  Create your first report >',
                            new_annual_summary_report_path,
                            :class => 'pink btn btn-primary' %></p>
 
@@ -33,7 +33,7 @@
 
 
               <% @annual_summary_reports.each do |annual_summary_report| %>
-                  <div class="panel panel-success">
+                  <div class="panel  annual_summary_row">
                     <div class="panel-heading">
                       <a href="<%= annual_summary_report_path(annual_summary_report) %>">
                         <%= annual_summary_report.title %>
@@ -64,13 +64,13 @@
 
       <% if @feedbacks.size == 0 %>
 
-          <div class="jumbotron">
-            <h2>You do not have any feedbacks yet.!</h2>
+          <div class="jumbotron blue-gradient ">
+            <h2>You do not have any feedbacks yet !</h2>
 
             <p>Collecting feedbacks regualary helps you in your continuous development process. It's very easy to
               organize and collect feedback. </p>
 
-            <p><%= link_to 'Enter your first feedback here',
+            <p><%= link_to 'Enter your first feedback here >',
                            new_feedback_path,
                            :class => 'pink btn btn-primary' %></p>
 
