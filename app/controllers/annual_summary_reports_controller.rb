@@ -46,7 +46,7 @@ class AnnualSummaryReportsController < ApplicationController
           answer.save
         end
 
-        format.html { redirect_to @annual_summary_report, notice: 'Annual summary report was successfully created.' }
+        format.html { redirect_to @annual_summary_report }
         format.json { render :show, status: :created, location: @annual_summary_report }
       else
         format.html { render :new }
