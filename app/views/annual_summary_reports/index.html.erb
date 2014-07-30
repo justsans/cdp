@@ -2,37 +2,128 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12" style="margin-top: 15px;">
-      <%= link_to 'New Report',
-                  new_annual_summary_report_path,
-                  :class => 'btn btn-primary' %>
 
-      <div class="panel panel-primary" style="margin-top: 5px;">
-        <div class="panel-heading"><h3>My Annual Summary Reports</h3></div>
-        <div class="panel-body">
+      <% if @annual_summary_reports.size == 0 %>
 
-          <% @annual_summary_reports.each do |annual_summary_report| %>
-              <div class="panel panel-success">
-                <div class="panel-heading">
-                  <a href="<%= annual_summary_report_path(annual_summary_report)%>">
+          <div class="jumbotron orangeBackground">
+            <h2>Welcome, <%= current_user.name %>!</h2>
+
+            <p>Looks like you do not have any annual summary reports yet. Get started with your annual summary report
+              today. Updating your annual summary on a continuous basis helps you organize your feedback and improve
+              yourselves continuously throughout the year.</p>
+
+            <p><%= link_to '  Create your first report',
+                           new_annual_summary_report_path,
+                           :class => 'btn btn-primary' %></p>
+
+          </div>
+
+
+      <% else %>
+
+          <%= link_to 'New Report',
+                      new_annual_summary_report_path,
+                      :class => 'btn btn-primary' %>
+
+
+
+          <div class="panel panel-primary" style="margin-top: 5px;">
+            <div class="panel-heading"><h3>My Annual Summary Reports</h3></div>
+            <div class="panel-body">
+
+
+              <% @annual_summary_reports.each do |annual_summary_report| %>
+                  <div class="panel panel-success">
+                    <div class="panel-heading">
+                      <a href="<%= annual_summary_report_path(annual_summary_report) %>">
                         <%= annual_summary_report.title %>
-                  </a>
-                  <div class="pull-right">
+                      </a>
+
+                      <div class="pull-right">
                         <%= link_to annual_summary_report_path(annual_summary_report), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
                             <%= glyph 'info-sign' %>
                         <%- end -%>
                         <%= link_to edit_annual_summary_report_path(annual_summary_report), :class => 'btn btn-xs', :title => "#{ t('.edit', :default => t('helpers.links.edit')) }" do %>
                             <%= glyph 'pencil' %>
                         <%- end -%>
-                      <%= link_to annual_summary_report_path(annual_summary_report), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
-                          <%= glyph 'remove' %>
-                      <%- end -%>
+                        <%= link_to annual_summary_report_path(annual_summary_report), :method => :delete, :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+                            <%= glyph 'remove' %>
+                        <%- end -%>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-          <% end %>
-        </div>
-      </div>
+              <% end %>
+            </div>
+          </div>
+
+      <% end %>
 
     </div>
+
+    <div class="col-xs-12" style="margin-top: 15px;">
+
+      <% if @feedbacks.size == 0 %>
+
+          <div class="jumbotron">
+            <h2>You do not have any feedbacks yet.!</h2>
+
+            <p>Collecting feedbacks regualary helps you in your continuous development process. It's very easy to
+              organize and collect feedback. </p>
+
+            <p><%= link_to 'Enter your first feedback here',
+                           new_feedback_path,
+                           :class => 'btn btn-primary' %></p>
+
+          </div>
+
+      <% else %>
+
+          <div class="panel panel-primary" style="margin-top: 5px;">
+            <div class="panel-heading"><h3>My most recent feedbacks</h3></div>
+            <div class="panel-body">
+
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th><%= model_class.human_attribute_name(:date) %></th>
+                  <th><%= model_class.human_attribute_name(:project) %></th>
+                  <th>Given By</th>
+                  <th><%= model_class.human_attribute_name(:category) %></th>
+                  <th><%= model_class.human_attribute_name(:message) %></th>
+                  <th><%= model_class.human_attribute_name(:action_plan) %></th>
+                  <th><%= t '.actions', :default => t("helpers.actions") %></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @feedbacks.each do |feedback| %>
+                    <tr>
+
+                      <td><%= feedback.date %></td>
+                      <td><%= feedback.project %></td>
+                      <td><%= feedback.from_user %></td>
+                      <td><%= feedback.category %></td>
+                      <td><%= feedback.message %></td>
+                      <td><%= feedback.action_plan %></td>
+                      <td>
+
+                        <%= link_to edit_feedback_path(feedback), :class => 'btn btn-xs', :title => "#{ t('.edit', :default => t('helpers.links.edit')) }" do %>
+                            <%= glyph 'pencil' %>
+                        <%- end -%>
+                        <%= link_to feedback_path(feedback), :method => :delete, :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+                            <%= glyph 'remove' %>
+                        <%- end -%>
+                      </td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+      <% end %>
+
+  </div>
+
   </div>
 </div>

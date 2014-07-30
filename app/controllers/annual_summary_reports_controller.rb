@@ -5,6 +5,7 @@ class AnnualSummaryReportsController < ApplicationController
   # GET /annual_summary_reports.json
   def index
     @annual_summary_reports = AnnualSummaryReport.where(user: current_user).order(:year).reverse_order
+    @feedbacks = Feedback.where(user: current_user).order(:created_at).reverse_order.limit(5)
   end
 
   # GET /annual_summary_reports/1
@@ -28,7 +29,8 @@ class AnnualSummaryReportsController < ApplicationController
 
     #create default questions
     questions = Question.all
-
+    @annual_summary_report.user_id = current_user.id
+    @annual_summary_report.status = 1
 
     respond_to do |format|
       if @annual_summary_report.save
