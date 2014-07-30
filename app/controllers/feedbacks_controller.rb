@@ -56,7 +56,7 @@ class FeedbacksController < ApplicationController
   def destroy
     @feedback.destroy
     respond_to do |format|
-      format.html { redirect_to feedbacks_url, notice: 'Feedback was successfully deleted.' }
+      format.html { redirect_to feedbacks_url }
       format.json { head :no_content }
     end
   end

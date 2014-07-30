@@ -60,7 +60,7 @@ class AnnualSummaryReportsController < ApplicationController
   def update
     respond_to do |format|
       if @annual_summary_report.update(annual_summary_report_params)
-        format.html { redirect_to @annual_summary_report, notice: 'Annual summary report was successfully updated.' }
+        format.html { redirect_to @annual_summary_report }
         format.json { render :show, status: :ok, location: @annual_summary_report }
       else
         format.html { render :edit }
@@ -74,7 +74,7 @@ class AnnualSummaryReportsController < ApplicationController
   def destroy
     @annual_summary_report.destroy
     respond_to do |format|
-      format.html { redirect_to annual_summary_reports_url, notice: 'Annual summary report was successfully destroyed.' }
+      format.html { redirect_to annual_summary_reports_url}
       format.json { head :no_content }
     end
   end
