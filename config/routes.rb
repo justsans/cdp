@@ -10,8 +10,6 @@ Rails.application.routes.draw do
     resources :answers
   end
 
-  resources :feedbacks
-
   root to: 'annual_summary_reports#index'
   devise_for :users
   resources :users
