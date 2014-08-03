@@ -1,29 +1,31 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Feedback -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @feedback.user_id %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:user_id) %></dt>
+      <dd><pre class="prettyprint"><%= @feedback.user_id %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:from_user_id) %></dt>
+      <dd><pre class="prettyprint"><%= @feedback.from_user_id %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:from_user_name) %></dt>
+      <dd><pre class="prettyprint"><%= @feedback.from_user_name %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:from_user_email) %></dt>
+      <dd><pre class="prettyprint"><%= @feedback.from_user_email %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:status_id) %></dt>
+      <dd><pre class="prettyprint"><%= @feedback.status_id %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>From user:</strong>
-  <%= @feedback.from_user_id %>
-</p>
-
-<p>
-  <strong>From user name:</strong>
-  <%= @feedback.from_user_name %>
-</p>
-
-<p>
-  <strong>From user email:</strong>
-  <%= @feedback.from_user_email %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @feedback.status_id %>
-</p>
-
-<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
-<%= link_to 'Back', feedbacks_path %>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              feedbacks_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_feedback_path(@feedback), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              feedback_path(@feedback),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

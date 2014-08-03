@@ -1,37 +1,40 @@
-<%= form_for(@feedback) do |f| %>
-  <% if @feedback.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
-
-      <ul>
-      <% @feedback.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @feedback, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <%= f.label :user_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :user_id, :class => 'text_field form-control' %>
     </div>
-  <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.label :from_user_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :from_user_id, :class => 'text_field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :from_user_name, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :from_user_name, :class => 'text_field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :from_user_email, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :from_user_email, :class => 'text_field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :status_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :status_id, :class => 'text_field form-control' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :from_user_id %><br>
-    <%= f.number_field :from_user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :from_user_name %><br>
-    <%= f.text_field :from_user_name %>
-  </div>
-  <div class="field">
-    <%= f.label :from_user_email %><br>
-    <%= f.text_field :from_user_email %>
-  </div>
-  <div class="field">
-    <%= f.label :status_id %><br>
-    <%= f.number_field :status_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  feedbacks_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 <% end %>

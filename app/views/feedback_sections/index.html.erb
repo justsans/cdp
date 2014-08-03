@@ -1,0 +1,46 @@
+<%- model_class = FeedbackSection -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:feedback_id) %></th>
+      <th><%= model_class.human_attribute_name(:question) %></th>
+      <th><%= model_class.human_attribute_name(:answer) %></th>
+      <th><%= model_class.human_attribute_name(:rating) %></th>
+      <th><%= model_class.human_attribute_name(:question_type) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @feedback_sections.each do |feedback_section| %>
+      <tr>
+        <td><%= feedback_section.id %></td>
+          <td><%= feedback_section.feedback_id %></td>
+          <td><%= feedback_section.question %></td>
+          <td><%= feedback_section.answer %></td>
+          <td><%= feedback_section.rating %></td>
+          <td><%= feedback_section.question_type %></td>
+        <td><%=l feedback_section.created_at, format: :long %></td>
+        <td>
+          <%= link_to feedback_section_path(feedback_section), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+          <%- end -%>
+          <%= link_to edit_feedback_section_path(feedback_section), :class => 'btn btn-xs', :title => "#{ t('.edit', :default => t('helpers.links.edit')) }" do %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to feedback_section_path(feedback_section), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_feedback_section_path,
+            :class => 'btn btn-primary' %>

@@ -1,0 +1,40 @@
+<%= form_for @feedback_section, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <%= f.label :feedback_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :feedback_id, :class => 'text_field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :question, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :question, :class => 'text_field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :answer, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :answer, :class => 'text_field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :rating, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :rating, :class => 'text_field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :question_type, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :question_type, :class => 'text_field form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  feedback_sections_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>

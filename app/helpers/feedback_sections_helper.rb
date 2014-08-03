@@ -1,0 +1,2 @@
+module FeedbackSectionsHelper
+end

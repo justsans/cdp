@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :feedback_sections
+
   resources :feedbacks
 
   resources :answers
