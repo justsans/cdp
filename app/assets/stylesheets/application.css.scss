@@ -14,6 +14,11 @@
  *= require_self
  */
 
+body {
+  font-family: "Open Sans", "Microsoft YaHei", "Hiragino Sans GB", "Hiragino Sans GB W3", "微软雅黑", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+}
+
 .navbar{
    background-color: #ef5ba1!important;
    color: white!important;
@@ -52,6 +57,7 @@
   background: -o-linear-gradient(#888888, black); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#888888, black); /* For Firefox 3.6 to 15 */
   background: linear-gradient(#888888, black); /* Standard syntax (must be last) */
+  opacity: 0.9;
 }
 
 
@@ -127,4 +133,10 @@
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   color: white;
   background-color: #7dcad2;
+}
+
+.thesiteblue {
+  color: white;
+  background-color: #7dcad2;
+  font-weight: bold;
 }

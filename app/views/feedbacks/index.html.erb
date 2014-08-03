@@ -2,6 +2,22 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12" style="margin-top: 5px;">
+      <% if @feedbacks.size == 0 %>
+
+          <div class="jumbotron gray-gradient ">
+            <h2>You do not have any feedbacks yet !</h2>
+
+            <p>Collecting feedbacks regualary helps you in your continuous development process. It's very easy to
+              organize and collect feedback. </p>
+
+            <p><%= link_to 'Enter your first feedback>',
+                           new_feedback_path,
+                           :class => 'btn  pink' %></p>
+
+          </div>
+
+      <% else %>
+
 
       <h3>
 
@@ -53,7 +69,7 @@
         </div>
       </div>
     </div>
-
+       <%end%>
   </div>
 </div>
 </div>
