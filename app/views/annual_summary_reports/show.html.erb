@@ -1,79 +1,94 @@
 <%- model_class = AnnualSummaryReport -%>
-<div class="container">
+<div class="container" ng-app="cdpApp" ng-controller="TabsCtrl as tab"
+     ng-init="init(<%= @annual_summary_report.id %>)">
   <div class="row">
     <div class="col-xs-12">
-      <div class="row">
-        <div class="col-xs-4 " style="margin-top: 2px;">
 
-          <div class="form-group">
-            <%= link_to t('.back', :default => t("helpers.links.back")),
-                        annual_summary_reports_path, :class => 'btn btn-default' %>
-            <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_annual_summary_report_path(@annual_summary_report), :class => 'btn btn-default' %>
-            <%= link_to 'Delete this report',
-                        annual_summary_report_path(@annual_summary_report),
-                        :method => 'delete',
-                        :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
-                        :class => 'btn btn-danger' %>
-          </div>
-
-        </div>
-      </div>
 
       <div class="panel panel-primary">
         <div class="panel-heading">
               <h3><%= @annual_summary_report.title %> (<%= @annual_summary_report.year %>)</h3>
           </div>
       </div>
+
+      <div class="row">
+        <div class="pull-right" style="margin-right:15px;">
+
+          <div class="form-group">
+
+            <div class="icon-div">
+              <div> <%= link_to '<i class="fa fa-arrow-circle-left"></i>'.html_safe,
+                                annual_summary_reports_path, :class => 'font-awesome-icon' %></div>
+              <div class="icon-bottom">Previous page</div>
+            </div>
+
+            <div class="icon-div">
+              <div ><%= link_to '<i class="fa fa-pencil"></i>'.html_safe,
+                                edit_annual_summary_report_path(@annual_summary_report), :class => 'font-awesome-icon' %></div>
+              <div class="icon-bottom">Edit Report</div>
+            </div>
+
+            <div class="icon-div">
+              <div >
+                <%= link_to '<i class="fa fa-times-circle"></i>'.html_safe,
+                            annual_summary_report_path(@annual_summary_report),
+                            :method => 'delete',
+                            :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+                            :class => 'font-awesome-icon' %>
+              </div>
+              <div class="icon-bottom">Delete Report</div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-xs-12">
-          <div ng-app="cdpApp" ng-controller="TabsCtrl as tab"
-               ng-init="init(<%= @annual_summary_report.id %>)"
+          <div
                class="tabbable tabs-left">
 
             <div class="row">
+
               <div class="col-xs-2">
-                <ul class="nav nav-pills nav-stacked red">
-                  <li ng-class="getTabClass(1)" ng-click="setActiveTab(1,<%=@annual_summary_report.id%>)">
-                    <a href="#expectations" data-toggle="tab">Expectations</a></li>
-                  <li ng-class="getTabClass(2)" ng-click="setActiveTab(2,<%=@annual_summary_report.id%>)">
-                    <a href="#aspiratons" data-toggle="tab">Aspirations</a></li>
-                  <li ng-class="getTabClass(3)" ng-click="setActiveTab(3,<%=@annual_summary_report.id%>)">
-                    <a href="#gaps" data-toggle="tab">Gaps/Areas of Focus</a></li>
-                  <li ng-class="getTabClass(4)" ng-click="setActiveTab(4,<%=@annual_summary_report.id%>)">
-                    <a href="#goals" data-toggle="tab">Goal Reflection</a></li>
+                <div class="btn-group-vertical" role="toolbar">
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(1)"
+                            ng-click="setActiveTab(1,<%=@annual_summary_report.id%>)">Expectations</button>
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(2)" ng-click="setActiveTab(2,<%=@annual_summary_report.id%>)">Aspirations</button>
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(3)" ng-click="setActiveTab(3,<%=@annual_summary_report.id%>)">Gaps/Areas of Focus</button>
 
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(4)" ng-click="setActiveTab(4,<%=@annual_summary_report.id%>)">Goal Reflection</button>
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(5)" ng-click="setActiveTab(5,<%=@annual_summary_report.id%>)">Team Ecosystem</button>
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(6)" ng-click="setActiveTab(6,<%=@annual_summary_report.id%>)">Personal Growth</button>
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(7)" ng-click="setActiveTab(7,<%=@annual_summary_report.id%>)">Feedback</button>
 
-                  <li ng-class="getTabClass(5)" ng-click="setActiveTab(5,<%=@annual_summary_report.id%>)">
-                    <a href="#ecosystem" data-toggle="tab">Team Ecosystem</a></li>
-                  <li ng-class="getTabClass(6)" ng-click="setActiveTab(6,<%=@annual_summary_report.id%>)">
-                    <a href="#personal-growth" data-toggle="tab">Personal Growth</a></li>
-                  <li ng-class="getTabClass(7)" ng-click="setActiveTab(7,<%=@annual_summary_report.id%>)">
-                    <a href="#feedback" data-toggle="tab">Feedback</a></li>
-                  <li ng-class="getTabClass(8)" ng-click="setActiveTab(8,<%=@annual_summary_report.id%>)">
-                    <a href="#coachingskills" data-toggle="tab">Coaching Skills</a></li>
-                  <li ng-class="getTabClass(9)" ng-click="setActiveTab(9,<%=@annual_summary_report.id%>)">
-                    <a href="#consultingskills" data-toggle="tab">Consulting Skills</a></li>
-                  <li ng-class="getTabClass(10)" ng-click="setActiveTab(10,<%=@annual_summary_report.id%>)">
-                    <a href="#engagement" data-toggle="tab">Engagement</a></li>
-                  <li ng-class="getTabClass(11)" ng-click="setActiveTab(11,<%=@annual_summary_report.id%>)">
-                    <a href="#personaljourney" data-toggle="tab">Personal Journey</a></li>
-                  <li ng-class="getTabClass(12)" ng-click="setActiveTab(12,<%=@annual_summary_report.id%>)">
-                    <a href="#lookingforward" data-toggle="tab">Looking Forward</a></li>
-                  <li ng-class="getTabClass(13)" ng-click="setActiveTab(13,<%=@annual_summary_report.id%>)">
-                    <a href="#lookingforward" data-toggle="tab">Discussion Topics</a></li>
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(8)" ng-click="setActiveTab(8,<%=@annual_summary_report.id%>)">Coaching Skills</button>
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(9)" ng-click="setActiveTab(9,<%=@annual_summary_report.id%>)">Consulting Skills</button>
 
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(10)" ng-click="setActiveTab(10,<%=@annual_summary_report.id%>)">Personal Journey</button>
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(11)" ng-click="setActiveTab(11,<%=@annual_summary_report.id%>)">Looking Forward</button>
 
-                </ul>
+                    <button type="button" class="btn btn-blue" data-toggle="tab"
+                            ng-class="getTabClass(12)" ng-click="setActiveTab(12,<%=@annual_summary_report.id%>)">Discussion Topics</button>
+
+                </div>
               </div>
+
               <div class="col-xs-10">
                 <div class="tab-content">
-                  <div >
-                  <button type="button" class="black-gradient btn btn-default"  style="margin-bottom: 5px;"
-                          ng-click="processForm(<%=@annual_summary_report.id%>)">Save All Changes</button>
 
-
-                  </div>
                   <% [1,2,3,4,5,6,7,8,9,10,11,12,13].each do |i| %>
 
                   <div ng-class="getTabPaneClass(<%=i%>)" id="expectations" >
@@ -83,10 +98,6 @@
                     </div>
                   </div>
                   <%end%>
-
-
-                  <button type="button" class="black-gradient btn btn-default"  style="margin-bottom: 5px;"
-                          ng-click="processForm(<%=@annual_summary_report.id%>)">Save All Changes</button>
 
 
                   <!--<pre>{{formData}}</pre>-->
@@ -99,18 +110,15 @@
       </div>
 
       <div class="row">
-        <div class="col-xs-4 " style="margin-top:40px;">
+        <div class="pull-right" style="margin-right:15px;margin-top: 15px;">
 
           <div class="form-group">
             <%= link_to t('.back', :default => t("helpers.links.back")),
                         annual_summary_reports_path, :class => 'btn btn-default' %>
-            <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_annual_summary_report_path(@annual_summary_report), :class => 'btn btn-default' %>
-            <%= link_to 'Delete this report',
-                        annual_summary_report_path(@annual_summary_report),
-                        :method => 'delete',
-                        :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
-                        :class => 'btn btn-danger' %>
+
+            <button type="button" class="black-gradient btn btn-default"
+                    ng-click="processForm(<%=@annual_summary_report.id%>)">Save Draft</button>
+
           </div>
 
         </div>

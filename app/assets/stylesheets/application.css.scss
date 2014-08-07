@@ -14,13 +14,35 @@
  *= require_self
  */
 
+@import "font-awesome";
+
+$light_blue: #30bdce;
+$med_blue: #008ba5;
+$orange: #f58e3d;
+
 body {
   font-family: "Open Sans", "Microsoft YaHei", "Hiragino Sans GB", "Hiragino Sans GB W3", "微软雅黑", "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
 }
 
+.font-awesome-icon {
+  font-size: 20px;
+  color: $light_blue;
+}
+
+.icon-div {
+  text-align:center;
+  width: 40px;
+  float:left;
+  margin: 5px;
+}
+
+.icon-bottom {
+  font-size: 10px;
+}
+
 .navbar{
-   background-color: #ef5ba1!important;
+   background-color: $light_blue!important;
    color: white!important;
 }
 
@@ -108,16 +130,26 @@ body {
   font-weight: bold!important;
 }
 
-
-
 .panel-primary > .panel-heading {
   color: white;
-  background-color: #7dcad2;
-  border-color: #7dcad2;
+  background-color: $orange;
+  border-color: $orange;
 }
 
 .panel-primary {
-  border-color: #7dcad2;
+  margin-top: 30px;
+  border-color: $orange;
+}
+
+.btn-blue {
+  color: white;
+  border-color: $med_blue;
+  background-color: $light_blue;
+}
+
+.btn.active, .btn:active {
+  background-color: $med_blue;
+  color: white;
 }
 
 .btn-primary, .submit, .authform .button, .button-xs {
@@ -130,9 +162,9 @@ body {
   background: linear-gradient(#888888, black); /* Standard syntax (must be last) */
 }
 
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
   color: white;
-  background-color: #7dcad2;
+  background-color: $med_blue;
 }
 
 .thesiteblue {

@@ -13,6 +13,7 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem 'bootstrap-sass-extras'
 gem 'devise'
+gem 'font-awesome-rails'
 gem 'rails_12factor', group: :production
 
 group :development do
