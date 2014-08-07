@@ -7,5 +7,6 @@ FactoryGirl.define do
     from_user_name "MyString"
     from_user_email "MyString"
     status_id 1
+    date "2014-08-03"
   end
 end

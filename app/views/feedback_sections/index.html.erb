@@ -11,6 +11,8 @@
       <th><%= model_class.human_attribute_name(:answer) %></th>
       <th><%= model_class.human_attribute_name(:rating) %></th>
       <th><%= model_class.human_attribute_name(:question_type) %></th>
+      <th><%= model_class.human_attribute_name(:action_plan) %></th>
+      <th><%= model_class.human_attribute_name(:category) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -24,6 +26,8 @@
           <td><%= feedback_section.answer %></td>
           <td><%= feedback_section.rating %></td>
           <td><%= feedback_section.question_type %></td>
+          <td><%= feedback_section.action_plan %></td>
+          <td><%= feedback_section.category %></td>
         <td><%=l feedback_section.created_at, format: :long %></td>
         <td>
           <%= link_to feedback_section_path(feedback_section), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>

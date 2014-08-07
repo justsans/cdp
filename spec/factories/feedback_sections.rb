@@ -7,5 +7,7 @@ FactoryGirl.define do
     answer "MyText"
     rating 1
     question_type 1
+    action_plan "MyText"
+    category "MyText"
   end
 end

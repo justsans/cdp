@@ -1,5 +1,61 @@
 <%- model_class = Feedback -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12" style="margin-top: 15px;">
+
+      <%= form_for @feedback, :html => { :class => 'form-horizontal' } do |f| %>
+
+          <div class="panel panel-primary" style="margin-top: 5px;">
+            <div class="panel-heading"><h3>Edit Feedback</h3></div>
+            <div class="panel-body">
+
+              <div class="form-group">
+                <%= f.label :date, :class => 'control-label col-md-2' %>
+                <div class="col-md-10">
+                  <%= f.text_field :date, :class => 'text_field form-control' %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :from_user_name, "Given By" , :class => 'control-label col-md-2' %>
+                <div class="col-md-10">
+                  <%= f.text_field :from_user_name, :class => 'text_field form-control' %>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :from_user_email, "Email",:class => 'control-label col-md-2' %>
+                <div class="col-md-10">
+                  <%= f.text_field :from_user_email, :class => 'text_field form-control' %>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+          <div class="panel panel-primary" style="margin-top: 5px;">
+            <div class="panel-heading"><h3>Questions</h3></div>
+            <div class="panel-body">
+
+          <%= render :partial => 'questions' %>
+
+                <div class='col-md-10'>
+                  <%= f.submit nil, :class => 'btn btn-primary' %>
+                  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                              feedbacks_path, :class => 'btn btn-default' %>
+                </div>
+
+
+            </div>
+          </div>
+
+      <% end %>
+
+
+    </div>
+
+  </div>
 </div>
-<%= render :partial => 'form' %>

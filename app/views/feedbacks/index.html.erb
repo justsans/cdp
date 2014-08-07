@@ -1,33 +1,38 @@
 <%- model_class = Feedback -%>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12" style="margin-top: 15px;">
 
-      <%= link_to 'Enter a new Feedback',
+
+
+      <%= link_to 'Enter new feedback',
                   new_feedback_path,
                   :class => 'btn btn-primary' %>
+
 
       <div class="panel panel-primary" style="margin-top: 5px;">
         <div class="panel-heading"><h3>My Feedbacks</h3></div>
         <div class="panel-body">
 
+
 <table class="table table-striped">
   <thead>
     <tr>
+      <th><%= model_class.human_attribute_name(:date) %></th>
+      <th>Given By</th>
+      <!--<th>Status </th>-->
 
-      <th><%= model_class.human_attribute_name(:from_user_name) %></th>
-      <th><%= model_class.human_attribute_name(:from_user_email) %></th>
-      <th><%= model_class.human_attribute_name(:status_id) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @feedbacks.each do |feedback| %>
       <tr>
+        <td><%= feedback.date %></td>
+        <td><%= feedback.from_user_name %>  (<%= feedback.from_user_email %>)</td>
+          <!--<td><%= feedback.status_id %></td>-->
 
-          <td><%= feedback.from_user_name %></td>
-          <td><%= feedback.from_user_email %></td>
-          <td><%= feedback.status_id %></td>
         <td>
           <%= link_to feedback_path(feedback), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
             <%= glyph 'info-sign' %>
@@ -45,13 +50,10 @@
 </table>
 
 
-
         </div>
 
       </div>
     </div>
 
-    </div>
-
-  </div>
+</div>
 </div>

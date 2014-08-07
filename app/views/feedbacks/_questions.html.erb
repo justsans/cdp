@@ -1,0 +1,32 @@
+
+    <div ng-app="cdpApp" ng-controller="EnterFeedbackCtrl as feedbackCtrl"
+            ng-init="loadQuestions(<%= @feedback.id%>)">
+      <button type="button" class="black-gradient btn btn-default"  style="margin-bottom: 5px;"
+              ng-click="addQuestion()">Add a question</button>
+      <div  ng-repeat="question in questions" style="background-color: #F8F8F8 ">
+
+        <div class="form-group" style="padding:10px;">
+          <div class="control-label col-md-2"><b>Question</b></div>
+          <div class="col-md-10">
+            <input type="text"
+                   ng-model="question.question"
+                   name="sections[][question]" class="text_field form-control"/>
+
+            <input type="hidden"
+
+                   name="sections[][id]" value="{{question.id}}" />
+          </div>
+        </div>
+
+
+        <div class="form-group" style="padding:10px;">
+          <div class=" control-label col-md-2"><b>Feedback</b></div>
+          <div class="col-md-10">
+            <textarea class="answerTextArea text_area form-control"
+                      ng-model="question.answer" name="sections[][answer]"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+

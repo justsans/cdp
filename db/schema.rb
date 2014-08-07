@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140803160924) do
+ActiveRecord::Schema.define(version: 20140803165439) do
 
   create_table "annual_summary_reports", force: true do |t|
     t.integer  "user_id"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20140803160924) do
     t.text     "answer"
     t.integer  "rating"
     t.integer  "question_type"
+    t.text     "action_plan"
+    t.text     "category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140803160924) do
     t.string   "from_user_name"
     t.string   "from_user_email"
     t.integer  "status_id"
+    t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

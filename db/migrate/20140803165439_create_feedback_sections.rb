@@ -6,6 +6,8 @@ class CreateFeedbackSections < ActiveRecord::Migration
       t.text :answer
       t.integer :rating
       t.integer :question_type
+      t.text :action_plan
+      t.text :category
 
       t.timestamps
     end

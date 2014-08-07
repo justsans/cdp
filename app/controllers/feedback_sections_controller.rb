@@ -1,10 +1,11 @@
 class FeedbackSectionsController < ApplicationController
+  before_filter :load_parent
   before_action :set_feedback_section, only: [:show, :edit, :update, :destroy]
 
   # GET /feedback_sections
   # GET /feedback_sections.json
   def index
-    @feedback_sections = FeedbackSection.all
+    @feedback_sections = @feedback.feedback_sections
   end
 
   # GET /feedback_sections/1
@@ -69,6 +70,10 @@ class FeedbackSectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feedback_section_params
-      params.require(:feedback_section).permit(:feedback_id, :question, :answer, :rating, :question_type)
+      params.require(:feedback_section).permit(:feedback_id, :question, :answer, :rating, :question_type, :action_plan, :category)
+    end
+
+    def load_parent
+          @feedback = Feedback.find(params[:feedback_id])
     end
 end

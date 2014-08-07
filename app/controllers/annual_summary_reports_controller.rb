@@ -7,7 +7,7 @@ class AnnualSummaryReportsController < ApplicationController
   # GET /annual_summary_reports.json
   def index
     @annual_summary_reports = AnnualSummaryReport.where(user: current_user).order(:year).reverse_order
-    @feedbacks = Feedback.where(user: current_user).order(:created_at).reverse_order.limit(5)
+    @feedbacks = Feedback.where(user: current_user)
   end
 
   # GET /annual_summary_reports/1

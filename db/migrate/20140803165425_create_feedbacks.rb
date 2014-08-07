@@ -6,6 +6,7 @@ class CreateFeedbacks < ActiveRecord::Migration
       t.string :from_user_name
       t.string :from_user_email
       t.integer :status_id
+      t.date :date
 
       t.timestamps
     end

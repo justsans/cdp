@@ -1,5 +1,36 @@
 var myApp = angular.module('cdpApp',['ngResource']);
 
+myApp.controller('EnterFeedbackCtrl',function($scope, $http, $resource){
+
+    $scope.questions = [{"question": "", "answer": "", "rating": 0, "id": 0}];
+    $scope.addQuestion = function(){
+          $scope.questions.push({"question": "", "answer": "", "rating": 0})
+    };
+
+    $scope.loadQuestions = function(feedback_id) {
+        if(feedback_id != undefined)              {
+            $resource('/feedbacks/'+feedback_id+'/feedback_sections.json', {}, {}).query(function(data) {
+                feedback_sections = data;
+                $scope.questions = [];
+                for(var i = 0; i < feedback_sections.length; i++) {
+                    var section = feedback_sections[i];
+                    $scope.questions.push({"question": section.question, "answer": section.answer, "rating": section.rating, "id": section.id})
+                }
+            });
+        }
+
+    };
+
+
+//    $scope.processForm = function(id) {
+//        $http.post('/annual_summary_reports/'+id+'/answer', $scope.formData)
+//            .success(function(data) {
+////               jQuery('#message').html('Successfully saved.')
+//            });
+//    };
+});
+
+
 myApp.controller('TabsCtrl', function($scope, $http, $resource){
     var tabClasses;
 
