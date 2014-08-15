@@ -1,0 +1,115 @@
+$light_blue: #30bdce;
+$med_blue: #008ba5;
+$orange: #f58e3d;
+
+.tabs-below, .tabs-right, .tabs-left {
+  .nav-tabs {
+  }
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+  display: none;
+  border-left: 1px solid #ddd;
+  padding: 20px;
+}
+
+.tab-content > .active,
+.pill-content > .active {
+  display: block;
+  border-color: white;
+}
+
+.tabs-below {
+  > .nav-tabs {
+    border-top: 1px solid #ddd;
+
+    > li {
+      margin-top: -1px;
+      margin-bottom: 0;
+
+      > a {
+        -webkit-border-radius: 0 0 4px 4px;
+        -moz-border-radius: 0 0 4px 4px;
+        border-radius: 0 0 4px 4px;
+
+        &:hover, &:focus {
+          border-top-color: #ddd;
+          border-bottom-color: transparent;
+        }
+      }
+    }
+    > .active a {
+      &, &:hover, &:focus {
+        border-color: transparent #ddd #ddd #ddd;
+      }
+    }
+  }
+}
+
+.tabs-left, .tabs-right {
+  > .nav-tabs > li {
+    float: none;
+
+    > a {
+      min-width: 74px;
+      margin-right: 0;
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.tabs-left > .nav-tabs {
+  float: left;
+  margin-right: 0px;
+  border-right: 1px solid #ddd;
+  background-color: $light_blue;
+  color: white;
+
+  > li > a {
+    margin-right: -1px;
+    -webkit-border-radius: 4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+    color: white;
+
+    &:hover, &:focus {
+      border-color: #eee #ddd #eee #eee;
+      color: black;
+    }
+  }
+
+  > .active a {
+    &, &:hover, &:focus {
+      border-color: #ddd transparent #ddd #ddd;
+      *border-right-color: #fff;
+      color: white;
+      background-color: $med_blue;
+
+    }
+  }
+}
+
+.tabs-right > .nav-tabs {
+  float: right;
+  margin-left: 19px;
+  border-left: 1px solid #ddd;
+
+  > li > a {
+    margin-left: -1px;
+    -webkit-border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
+
+    &:hover, &:focus {
+      border-color: #eee #eee #eee #ddd;
+    }
+  }
+
+  > .active a {
+    &, &:hover, &:focus {
+      border-color: #ddd #ddd #ddd transparent;
+      *border-left-color: #fff;
+    }
+  }
+}

@@ -4,7 +4,12 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks
   # GET /feedbacks.json
   def index
-    @feedbacks = Feedback.all
+    @feedbacks = Feedback.where(status_id: 2)
+    @feedback_requests = Feedback.where(status_id: 1)
+  end
+
+  def pending
+    @feedbacks = Feedback.where(status_id: 1)
   end
 
   # GET /feedbacks/1
@@ -26,6 +31,7 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     @feedback.user_id = current_user.id
+    @feedback.status_id = 2;
     sections = params[:sections]
 
     #puts "Sections ######"
@@ -54,6 +60,44 @@ class FeedbacksController < ApplicationController
       end
     end
   end
+
+
+  def sendFeedbackRequest
+    requestBody = ActiveSupport::JSON.decode(request.body.read)
+
+    puts "Sections ######"
+    puts requestBody
+
+    for recipient in requestBody['recipients']
+      feedback = Feedback.new
+      feedback.user_id = current_user.id
+      feedback.status_id = 1
+      feedback.date_requested = Date.today
+      feedback.from_user_name = recipient['name']
+      feedback.from_user_email = recipient['email']
+      feedback.from_user_role = recipient['role']
+      feedback.save
+
+      for question in requestBody['questions']
+        feedbackSection = FeedbackSection.new
+        feedbackSection.feedback_id = feedback.id
+        feedbackSection.question = question["question"]
+        feedbackSection.answer = ''
+
+        feedbackSection.rating = 0
+        feedbackSection.question_type = question["type"]
+        feedbackSection.action_plan = ''
+        feedbackSection.category = ''
+        feedbackSection.save
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to feedbacks_url}
+      format.json { head :no_content }
+    end
+  end
+
 
   # PATCH/PUT /feedbacks/1
   # PATCH/PUT /feedbacks/1.json
@@ -106,6 +150,6 @@ class FeedbacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feedback_params
-      params.require(:feedback).permit(:user_id, :from_user_id, :from_user_name, :from_user_email, :status_id, :date)
+      params.require(:feedback).permit(:user_id, :from_user_id, :from_user_name, :from_user_email, :status_id, :date, :from_user_role, :project)
     end
 end

@@ -6,7 +6,7 @@
 
       <div class="panel panel-primary" style="margin-top: 5px;">
         <div class="panel-heading">
-          <h3>Feedback given by - <%= @feedback.from_user_name %> on <%= @feedback.date %></h3></div>
+          Feedback given by - <%= @feedback.from_user_name %> on <%= @feedback.date %></div>
         <div class="panel-body">
 
           <div ng-app="cdpApp" ng-controller="EnterFeedbackCtrl as feedbackCtrl" ng-init="loadQuestions(<%= @feedback.id %>)">

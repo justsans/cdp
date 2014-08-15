@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem 'bootstrap-sass-extras'
+gem 'angular-ui-bootstrap-rails'
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'rails_12factor', group: :production

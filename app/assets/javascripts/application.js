@@ -15,4 +15,6 @@
 //= require bootstrap
 //= require angular
 //= require angular-resource
+//= require angular-ui-bootstrap
+//= require angular-ui-bootstrap-tpls
 //= require_tree .

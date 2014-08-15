@@ -32,9 +32,19 @@ body {
 
 .icon-div {
   text-align:center;
-  width: 40px;
+  width: 60px;
   float:left;
-  margin: 5px;
+  margin: 10px;
+}
+
+.icon-div-wide {
+  width: 400px;
+  float:left;
+}
+
+.icon-bottom-wide {
+  font-size: 10px;
+  float:left;
 }
 
 .icon-bottom {
@@ -58,88 +68,32 @@ body {
   margin-left: 0px;
 }
 
-.greenbutton {
-  color: white !important;
-  font-weight: bold;
-  background-color: #468847!important;
-}
-
-.orangeBackground {
-  background-color: #ff9900!important;
-  border-color: black!important;
-  color: white!important;
-  opacity:  1.0;
-}
-
-.black-gradient {
-  color: white!important;
-  font-weight: bold!important;
-
-  background: -webkit-linear-gradient(#888888, black); /* For Safari 5.1 to 6.0*/
-  background: -o-linear-gradient(#888888, black); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#888888, black); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#888888, black); /* Standard syntax (must be last) */
-  opacity: 0.9;
-}
-
-
-.orange-gradient {
-  color: white!important;
-  font-weight: bold!important;
-
-  background: -webkit-linear-gradient(#FFCC99, #FF9900); /* For Safari 5.1 to 6.0*/
-  background: -o-linear-gradient(#FFCC99, #FF9900); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#FFCC99, #FF9900); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#FFCC99, #FF9900); /* Standard syntax (must be last) */
-}
-
-.blue-gradient {
-  color: white!important;
-  font-weight: bold!important;
-
-  background: -webkit-linear-gradient(#66CCFF, #336699); /* For Safari 5.1 to 6.0*/
-  background: -o-linear-gradient(#66CCFF, #336699); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#66CCFF, #336699); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#66CCFF, #336699); /* Standard syntax (must be last) */
-}
-
-.pink-gradient {
-  color: white!important;
-  font-weight: bold!important;
-
-  background: -webkit-linear-gradient(#FFCCCC, #ef5ba1); /* For Safari 5.1 to 6.0*/
-  background: -o-linear-gradient(#FFCCCC, #ef5ba1); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#FFCCCC, #ef5ba1); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#FFCCCC, #ef5ba1); /* Standard syntax (must be last) */
-}
-
-.gray-gradient {
-  color: #9e785f!important;
-  font-weight: bold!important;
-
-  background: -webkit-linear-gradient(#F0F0F0, #eeeeee); /* For Safari 5.1 to 6.0*/
-  background: -o-linear-gradient(#F0F0F0, #eeeeee); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#F0F0F0, #eeeeee); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#F0F0F0, #eeeeee); /* Standard syntax (must be last) */
-}
-
-.pink {
-  background-color: #ef5ba1!important;
-  border-color: #ef5ba1;
-  color: white!important;
-  font-weight: bold!important;
-}
 
 .panel-primary > .panel-heading {
   color: white;
-  background-color: $orange;
-  border-color: $orange;
+  background-color: $light_blue;
+  border-color: $light_blue;
+  height: 40px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .panel-primary {
-  margin-top: 30px;
-  border-color: $orange;
+  margin-top: 20px;
+  border-color: $light_blue;
 }
+
+.panel-body {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.row {
+   margin-left: 0px;
+   margin-right: 0px;
+}
+
+
 
 .btn-blue {
   color: white;
@@ -167,8 +121,15 @@ body {
   background-color: $med_blue;
 }
 
-.thesiteblue {
+.modal-header {
+  background-color: $light_blue;
   color: white;
-  background-color: #7dcad2;
   font-weight: bold;
 }
+
+.field_header {
+  font-weight: bold;
+  text-align: center;
+}
+
+

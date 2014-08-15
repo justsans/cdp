@@ -6,8 +6,12 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Devise" %>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <link data-require="ng-table@*" data-semver="0.3.1" rel="stylesheet" href="http://bazalt-cms.com/assets/ng-table/0.3.1/ng-table.css" />
+
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script data-require="ng-table@*" data-semver="0.3.1" src="http://bazalt-cms.com/assets/ng-table/0.3.1/ng-table.js"></script>
+
 
     <%= csrf_meta_tags %>
   </head>

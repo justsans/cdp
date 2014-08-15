@@ -1,6 +1,6 @@
-var myApp = angular.module('cdpApp',['ngResource']);
+//var myApp = angular.module('cdpApp',['ngResource', 'ui.bootstrap']);
 
-myApp.controller('EnterFeedbackCtrl',function($scope, $http, $resource){
+angular.module('cdpApp').controller('EnterFeedbackCtrl',function($scope, $http, $resource){
 
     $scope.questions = [{"question": "", "answer": "", "rating": 0, "id": 0}];
     $scope.addQuestion = function(){
@@ -31,7 +31,7 @@ myApp.controller('EnterFeedbackCtrl',function($scope, $http, $resource){
 });
 
 
-myApp.controller('TabsCtrl', function($scope, $http, $resource){
+angular.module('cdpApp').controller('TabsCtrl', function($scope, $http, $resource){
     var tabClasses;
 
     function initTabs() {
@@ -88,3 +88,4 @@ myApp.controller('TabsCtrl', function($scope, $http, $resource){
     initTabs();
     $scope.setActiveTab(1);
 });
+

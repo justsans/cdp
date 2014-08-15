@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   resources :feedback_sections
 
   resources :feedbacks  do
+    collection do
+      post 'sendFeedbackRequest'
+      get 'pending'
+    end
+
     resources :feedback_sections
+
   end
 
   resources :answers

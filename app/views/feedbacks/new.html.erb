@@ -9,43 +9,52 @@
       <%= form_for @feedback, :html => { :class => 'form-horizontal' } do |f| %>
 
           <div class="panel panel-primary" style="margin-top: 5px;">
-            <div class="panel-heading"><h3>New Feedback</h3></div>
+            <div class="panel-heading">New Feedback</div>
             <div class="panel-body">
 
-              <div class="form-group">
-                <%= f.label :date, :class => 'control-label col-md-2' %>
-                <div class="col-md-10">
-                  <%= f.text_field :date, :class => 'text_field form-control' %>
+              <div class="row" style="margin-bottom: margin-top: 20px;">
+
+                <div class="col-md-6">
+                  <span class="field_header">Name</span><%= f.text_field :from_user_name, :class => 'text_field form-control' %>
                 </div>
+                <div class="col-md-6">
+                  <span class="field_header">Email</span><%= f.text_field :from_user_email, :class => 'text_field form-control' %>
+                </div>
+
+               </div>
+
+                <div class="row" style="margin-bottom: 30px; margin-top: 30px;">
+
+                  <div class="col-md-6">
+                    <span class="field_header">Project</span><%= f.text_field :project, :class => 'text_field form-control' %>
+                  </div>
+                  <div class="col-md-4">
+                    <span class="field_header">Role</span><%= f.text_field :from_user_role, :class => 'text_field form-control' %>
+                  </div>
+                  <div class="col-md-2">
+                    <span class="field_header">Date</span><%= f.text_field :date, :class => 'text_field form-control' %>
+                  </div>
+
               </div>
 
-              <div class="form-group">
-                <%= f.label :from_user_name, "Given By" , :class => 'control-label col-md-2' %>
-                <div class="col-md-10">
-                  <%= f.text_field :from_user_name, :class => 'text_field form-control' %>
+              <%= render :partial => 'questions' %>
+              <div class="row pull-right">
+                <div class='col-md-12'>
+                  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                              feedbacks_path, :class => 'btn btn-default' %>
+                  <%= f.submit nil, :class => 'btn btn-primary' %>
+
                 </div>
+
               </div>
-              <div class="form-group">
-                <%= f.label :from_user_email, "Email",:class => 'control-label col-md-2' %>
-                <div class="col-md-10">
-                  <%= f.text_field :from_user_email, :class => 'text_field form-control' %>
-                </div>
-              </div>
+
 
             </div>
           </div>
 
-          <div class="panel panel-primary" style="margin-top: 5px;">
-            <div class="panel-heading"><h3>Questions</h3></div>
-            <div class="panel-body">
-          <%= render :partial => 'questions' %>
-              <div class='col-md-10'>
-                <%= f.submit nil, :class => 'btn btn-primary' %>
-                <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                            feedbacks_path, :class => 'btn btn-default' %>
-              </div>
-            </div>
-          </div>
+
+
+
 
       <% end %>
 
@@ -54,3 +63,4 @@
 
 </div>
 </div>
+

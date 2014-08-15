@@ -1,0 +1,73 @@
+  <script type="text/ng-template" id="feedbackRequestModal.html">
+    <div class="modal-header">
+      <h3 class="modal-title">New Feedback Request</h3>
+    </div>
+    <div class="modal-body">
+      <b>Questions</b>
+      <div class="panel panel-primary" style="margin-top: 5px;">
+
+        <div class="panel-body">
+          <div ng-repeat="question in questions" style="margin-top: 10px;">
+            <input type="text" ng-model="question.question" class="text_field form-control"/>
+          </div>
+
+          <div class="row" style="margin-top: 10px; margin-bottom: 20px;">
+            <div class="col-md-5">
+              <div class="icon-div-wide">
+                <div> <%= link_to '<i class="fa fa-plus-square"></i>'.html_safe, '',
+                                  :class => 'font-awesome-icon', :'ng-click' => 'addQuestion()' %>&nbsp;Add a Question</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <b>Recepients</b>
+        <div class="panel panel-primary" style="margin-top: 5px;">
+          <div class="panel-body">
+
+
+        <div class="row" ng-repeat="recipient in recipients" style="margin-bottom: 10px;">
+          <div class="col-md-5">
+            <span>Name</span><input type="text" ng-model="recipient.name" class="text_field form-control"/>
+          </div>
+          <div class="col-md-5">
+            <span>Email</span><input type="text" ng-model="recipient.email" class="text_field form-control"/>
+          </div>
+          <div class="col-md-2">
+            <span>Role</span><input type="text" ng-model="recipient.role" class="text_field form-control"/>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 10px; margin-bottom: 20px;">
+          <div class="col-md-5">
+            <div class="icon-div-wide">
+              <div> <%= link_to '<i class="fa fa-plus-square"></i>'.html_safe, '',
+                                :class => 'font-awesome-icon', :'ng-click' => 'addRecipient()' %>&nbsp;Add a Recipient</div>
+            </div>
+          </div>
+        </div>
+          </div>
+      </div>
+
+
+
+
+      <b>Email Message</b>
+      <div class="panel panel-primary" style="margin-top: 5px;">
+
+        <div class="panel-body">
+                <textarea class="form-control" style="height:150px;" ng-model="custom_message"></textarea>
+          </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-primary" ng-click="submitFeedbackRequests()">Send Feedback Requests</button>
+
+    </div>
+  </script>
